@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/broadsheet-7e1de259-f96e-4f0f-9e83-d9dd92fd4be0/styles.css">
+  <script src="_ds/broadsheet-7e1de259-f96e-4f0f-9e83-d9dd92fd4be0/_ds_bundle.js"></script>
+  <style>
+:root{--edge:clamp(20px,5vw,72px);--leading:28px;--half:14px}
+body{margin:0;text-wrap:pretty}
+.wrap{max-width:1100px;margin:0 auto;padding:0 var(--edge)}
+.nav{padding:var(--half) max(var(--edge),calc((100% - 1100px)/2 + var(--edge)));display:flex;align-items:center;justify-content:space-between;gap:var(--half);flex-wrap:wrap}
+.nav-links{display:flex;gap:calc(var(--space-3) * 1.4);align-items:center;flex-wrap:wrap}
+.nav a[aria-current="page"]{color:var(--color-accent-700)}
+.lang-toggle{font-size:13px;letter-spacing:.06em;text-transform:uppercase;border:1px solid color-mix(in srgb,var(--color-text) 30%,transparent);background:transparent;border-radius:var(--radius-sm);padding:5px 10px;cursor:pointer;font-family:var(--font-body);color:var(--color-text)}
+.lang-toggle:hover{border-color:var(--color-accent)}
+.kicker{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 70%,transparent);margin:0 0 var(--half)}
+h1.display{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(32px,4.5vw,52px);line-height:1.1;letter-spacing:-0.02em;margin:0 0 var(--leading)}
+.timeline{padding:calc(1.5*var(--leading)) 0 calc(3*var(--leading))}
+.job{padding:var(--leading) 0;border-top:1px solid color-mix(in srgb,var(--color-text) 14%,transparent);display:grid;grid-template-columns:220px 1fr;gap:var(--leading);opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.job.is-visible{opacity:1;transform:none}
+.job:first-of-type{border-top:2px solid var(--color-text)}
+.job-meta{font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 65%,transparent);line-height:1.6}
+.job-meta strong{display:block;color:var(--color-text);font-size:13px;text-transform:none;letter-spacing:0;margin-bottom:4px;font-family:var(--font-body)}
+.job h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:23px;letter-spacing:-0.01em;margin:0 0 6px}
+.job .org{font-size:15px;color:color-mix(in srgb,var(--color-text) 75%,transparent);margin:0 0 12px}
+.job p.body{font-size:15.5px;line-height:1.65;margin:0 0 12px;color:color-mix(in srgb,var(--color-text) 85%,transparent)}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.edu-section{padding:0 0 calc(2.5*var(--leading))}
+.edu-title{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:26px;margin:0 0 var(--leading);letter-spacing:-0.01em}
+.edu{display:grid;grid-template-columns:220px 1fr;gap:var(--leading);padding:calc(var(--half) + 4px) 0;border-top:1px solid color-mix(in srgb,var(--color-text) 12%,transparent)}
+.edu:first-of-type{border-top:2px solid var(--color-text)}
+.edu-meta{font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 65%,transparent)}
+.edu h3{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:18px;margin:0 0 4px}
+.edu p{margin:0;font-size:14.5px;color:color-mix(in srgb,var(--color-text) 75%,transparent)}
+footer{padding:calc(1.5*var(--leading)) 0;font-size:13px;color:color-mix(in srgb,var(--color-text) 65%,transparent);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a{color:inherit}
+@media(max-width:800px){.job,.edu{grid-template-columns:1fr}}
+  </style>
+</helmet>
+<div ref="{{ rootRef }}">
+<nav class="nav">
+  <span class="nav-brand">Alberto Catalá López</span>
+  <div class="nav-links">
+    <a href="index.dc.html">{{ t.nav_home }}</a>
+    <a href="experiencia.dc.html" aria-current="page">{{ t.nav_exp }}</a>
+    <a href="proyectos.dc.html">{{ t.nav_proj }}</a>
+    <a href="contacto.dc.html">{{ t.nav_contact }}</a>
+    <button type="button" class="lang-toggle" onClick="{{ toggleLang }}">{{ t.lang_label }}</button>
+  </div>
+</nav>
+<div class="wrap">
+  <section style="padding:calc(2*var(--leading)) 0 0">
+    <span class="kicker">{{ t.kicker }}</span>
+    <h1 class="display">{{ t.title }}</h1>
+  </section>
+
+  <section class="timeline">
+    <div class="job"><div class="job-meta"><strong>{{ t.jobs.0.dates }}</strong>{{ t.jobs.0.location }}</div>
+      <div><h2>{{ t.jobs.0.role }}</h2><p class="org">{{ t.jobs.0.org }}</p><p class="body">{{ t.jobs.0.body }}</p>
+        <div class="skills"><span class="tag tag-accent">{{ t.jobs.0.skills.0 }}</span><span class="tag tag-outline">{{ t.jobs.0.skills.1 }}</span><span class="tag tag-outline">{{ t.jobs.0.skills.2 }}</span></div></div></div>
+    <div class="job"><div class="job-meta"><strong>{{ t.jobs.1.dates }}</strong>{{ t.jobs.1.location }}</div>
+      <div><h2>{{ t.jobs.1.role }}</h2><p class="org">{{ t.jobs.1.org }}</p><p class="body">{{ t.jobs.1.body }}</p>
+        <div class="skills"><span class="tag tag-accent">{{ t.jobs.1.skills.0 }}</span><span class="tag tag-outline">{{ t.jobs.1.skills.1 }}</span></div></div></div>
+    <div class="job"><div class="job-meta"><strong>{{ t.jobs.2.dates }}</strong>{{ t.jobs.2.location }}</div>
+      <div><h2>{{ t.jobs.2.role }}</h2><p class="org">{{ t.jobs.2.org }}</p><p class="body">{{ t.jobs.2.body }}</p>
+        <div class="skills"><span class="tag tag-accent">{{ t.jobs.2.skills.0 }}</span><span class="tag tag-outline">{{ t.jobs.2.skills.1 }}</span></div></div></div>
+    <div class="job"><div class="job-meta"><strong>{{ t.jobs.3.dates }}</strong>{{ t.jobs.3.location }}</div>
+      <div><h2>{{ t.jobs.3.role }}</h2><p class="org">{{ t.jobs.3.org }}</p><p class="body">{{ t.jobs.3.body }}</p>
+        <div class="skills"><span class="tag tag-accent">{{ t.jobs.3.skills.0 }}</span><span class="tag tag-outline">{{ t.jobs.3.skills.1 }}</span></div></div></div>
+    <div class="job"><div class="job-meta"><strong>{{ t.jobs.4.dates }}</strong>{{ t.jobs.4.location }}</div>
+      <div><h2>{{ t.jobs.4.role }}</h2><p class="org">{{ t.jobs.4.org }}</p><p class="body">{{ t.jobs.4.body }}</p>
+        <div class="skills"><span class="tag tag-accent">{{ t.jobs.4.skills.0 }}</span><span class="tag tag-outline">{{ t.jobs.4.skills.1 }}</span></div></div></div>
+    <div class="job"><div class="job-meta"><strong>{{ t.jobs.5.dates }}</strong>{{ t.jobs.5.location }}</div>
+      <div><h2>{{ t.jobs.5.role }}</h2><p class="org">{{ t.jobs.5.org }}</p><p class="body">{{ t.jobs.5.body }}</p>
+        <div class="skills"><span class="tag tag-accent">{{ t.jobs.5.skills.0 }}</span><span class="tag tag-outline">{{ t.jobs.5.skills.1 }}</span></div></div></div>
+  </section>
+
+  <section class="edu-section">
+    <h3 class="edu-title">{{ t.edu_title }}</h3>
+    <div class="edu"><div class="edu-meta">{{ t.edu.0.dates }}</div><div><h3>{{ t.edu.0.degree }}</h3><p>{{ t.edu.0.school }}</p></div></div>
+    <div class="edu"><div class="edu-meta">{{ t.edu.1.dates }}</div><div><h3>{{ t.edu.1.degree }}</h3><p>{{ t.edu.1.school }}</p></div></div>
+    <div class="edu"><div class="edu-meta">{{ t.edu.2.dates }}</div><div><h3>{{ t.edu.2.degree }}</h3><p>{{ t.edu.2.school }}</p></div></div>
+  </section>
+
+  <footer>
+    <span>© 2026 Alberto Catalá López</span>
+    <span><a href="mailto:albertocatalalopezml@gmail.com">albertocatalalopezml@gmail.com</a> · <a href="https://linkedin.com/in/alberto-catala">LinkedIn</a> · <a href="https://github.com/Catala101">GitHub</a></span>
+  </footer>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+const ES = {
+  lang_label: "EN", nav_home: "Inicio", nav_exp: "Experiencia", nav_proj: "Proyectos", nav_contact: "Contacto",
+  kicker: "Trayectoria", title: "Experiencia profesional",
+  jobs: [
+    { dates: "Jul. 2025 — actualidad", location: "Majadahonda, Madrid · Presencial",
+      role: "Técnico IT & Automatización de Sistemas | Seguridad, Redes y Cloud",
+      org: "Canal de Isabel II (Eulen Seguridad — Lote 3)",
+      body: "Gestión del Centro de Control de Seguridad de Canal de Isabel II, operando entornos híbridos que integran hardware especializado (KVMs, switches, videowalls, control de accesos, CCTV) y plataformas de seguridad (PSIM, SBN, Dassnet, Winpak, Control Center, Axis). Diseño e implemento automatizaciones en la nube con Office 365, Power Automate y Google Apps Script, optimizando flujos de trabajo, bases de datos e informes de Excel/OneDrive. Entrego soluciones orientadas a la continuidad del servicio, la seguridad tecnológica y la optimización de procesos en entornos IT de alta criticidad.",
+      skills: ["Ciberseguridad", "Automatización en la nube", "PSIM / CCTV"] },
+    { dates: "Jul. 2024 — dic. 2024", location: "Pozuelo de Alarcón, Madrid · Presencial",
+      role: "Administrador de Sistemas de Back Office (N2)",
+      org: "Restaurant Brands Iberia",
+      body: "Gestión integral del Back Office: configuración de sistemas POS, alta de productos, pantallas interactivas y soporte técnico. Administración de bases de datos, asegurando su integración y funcionamiento óptimo en los sistemas de punto de venta, con resolución de tickets para mantener operaciones continuas y eficientes.",
+      skills: ["Administración de bases de datos", "Linux"] },
+    { dates: "Mar. 2023 — jun. 2023", location: "Madrid",
+      role: "Desarrollador de Software y Técnico Informático",
+      org: "Ragatex S.L. (prácticas)",
+      body: "Desarrollo de aplicaciones en C# y JavaScript (Angular y React), gestión de bases de datos MongoDB y MariaDB, y automatización de procesos con Excel. Soporte técnico, colaboración en equipo y mantenimiento de documentación técnica.",
+      skills: ["ERP", "MariaDB"] },
+    { dates: "Mar. 2021 — jun. 2021", location: "Madrid",
+      role: "Desarrollador de Aplicaciones",
+      org: "UXmonkeys (prácticas)",
+      body: "Diseño completo de la aplicación en Figma e implementación en la app. Desarrollo integral con Android Studio en Java y PHP (conexión), usando distintos frameworks y librerías.",
+      skills: ["SQL", "JavaScript"] },
+    { dates: "Oct. 2018 — jul. 2019", location: "Madrid · Presencial",
+      role: "Soporte y Mantenimiento IT",
+      org: "Colegio Decroly — Madrid (jornada parcial)",
+      body: "Mantenimiento general de IT, gestión de red e introducción de mejoras wifi, inventario de dispositivos y equipos, edición de vídeo y audio, soporte de dispositivos (hardware/software).",
+      skills: ["Soluciones de TI", "VPN"] },
+    { dates: "Jul. 2017 — sept. 2017", location: "Madrid",
+      role: "Soporte Técnico IT",
+      org: "HomeServe España (contrato temporal)",
+      body: "Mantenimiento y reparación de equipos, soporte a usuarios, cableado y verificación de racks, y gestión de almacenes de TI.",
+      skills: ["Soporte a usuarios", "Cableado y racks"] }
+  ],
+  edu_title: "Formación académica",
+  edu: [
+    { dates: "Sept. 2022 — jun. 2023", degree: "Grado Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)", school: "IMF Business School" },
+    { dates: "2019 — 2021", degree: "Grado Superior en Desarrollo de Aplicaciones Web, Programación Informática", school: "Centro Nelson" },
+    { dates: "2017 — 2019", degree: "Grado Medio en Sistemas Microinformáticos y Redes (SMR)", school: "Centro Nelson" }
+  ]
+};
+const EN = {
+  lang_label: "ES", nav_home: "Home", nav_exp: "Experience", nav_proj: "Projects", nav_contact: "Contact",
+  kicker: "Career", title: "Professional experience",
+  jobs: [
+    { dates: "Jul. 2025 — present", location: "Majadahonda, Madrid · On-site",
+      role: "IT Technician & Systems Automation | Security, Networks and Cloud",
+      org: "Canal de Isabel II (Eulen Seguridad — Lot 3)",
+      body: "Managing the Security Control Center of Canal de Isabel II, operating hybrid environments that integrate specialized hardware (KVMs, switches, videowalls, access control, CCTV) and security platforms (PSIM, SBN, Dassnet, Winpak, Control Center, Axis). Designing and implementing cloud automations with Office 365, Power Automate and Google Apps Script, optimizing workflows, databases and Excel/OneDrive reports. Delivering solutions focused on service continuity, technology security and process optimization in high-critical IT environments.",
+      skills: ["Cybersecurity", "Cloud automation", "PSIM / CCTV"] },
+    { dates: "Jul. 2024 — Dec. 2024", location: "Pozuelo de Alarcón, Madrid · On-site",
+      role: "Backoffice Systems Administrator",
+      org: "Restaurant Brands Iberia",
+      body: "Comprehensive Back Office management: POS system configuration, product setup, interactive displays and technical support. Database administration, ensuring integration and optimal functionality within point-of-sale systems, with ticket resolution to keep operations continuous and efficient.",
+      skills: ["Database administration", "Linux"] },
+    { dates: "Mar. 2023 — Jun. 2023", location: "Madrid",
+      role: "Software Developer and IT Technician",
+      org: "Ragatex S.L. (internship)",
+      body: "Development of applications in C# and JavaScript (Angular and React), managing MongoDB and MariaDB databases, and automating processes with Excel. Technical support, team collaboration and technical documentation.",
+      skills: ["ERP", "MariaDB"] },
+    { dates: "Mar. 2021 — Jun. 2021", location: "Madrid",
+      role: "Application Developer",
+      org: "UXmonkeys (internship)",
+      body: "Full design of the application in Figma and its implementation in the app. Comprehensive app development using Android Studio with Java and PHP (connection layer), various frameworks and libraries.",
+      skills: ["SQL", "JavaScript"] },
+    { dates: "Oct. 2018 — Jul. 2019", location: "Madrid · On-site",
+      role: "IT Support and Maintenance",
+      org: "Colegio Decroly — Madrid (part-time)",
+      body: "General IT maintenance, network management and wireless improvements, device and equipment inventory, video and audio editing, hardware/software device support.",
+      skills: ["IT solutions", "VPN"] },
+    { dates: "Jul. 2017 — Sep. 2017", location: "Madrid",
+      role: "IT Technical Support",
+      org: "HomeServe España (temporary contract)",
+      body: "Equipment maintenance and repair, user support, cabling and rack checks, and IT warehouse management.",
+      skills: ["User support", "Cabling & racks"] }
+  ],
+  edu_title: "Education",
+  edu: [
+    { dates: "Sept. 2022 — Jun. 2023", degree: "Multi-platform Application Developer Degree", school: "IMF Business School" },
+    { dates: "2019 — 2021", degree: "Advanced Degree in Web Application Development, Computer Programming", school: "Centro Nelson" },
+    { dates: "2017 — 2019", degree: "Vocational Degree in Microcomputer Systems and Networks (SMR)", school: "Centro Nelson" }
+  ]
+};
+class Component extends DCLogic {
+  state = { lang: (typeof localStorage !== 'undefined' && localStorage.getItem('site-lang')) || 'es' };
+  componentDidMount() {
+    if (!this.rootEl) return;
+    const els = this.rootEl.querySelectorAll('.job');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach((el, i) => { el.style.transitionDelay = (i * 60) + 'ms'; obs.observe(el); });
+  }
+  renderVals() {
+    const t = this.state.lang === 'es' ? ES : EN;
+    return {
+      t,
+      rootRef: (el) => { this.rootEl = el; },
+      toggleLang: () => this.setState(s => {
+        const lang = s.lang === 'es' ? 'en' : 'es';
+        if (typeof localStorage !== 'undefined') localStorage.setItem('site-lang', lang);
+        return { lang };
+      })
+    };
+  }
+}
+
+</script>
+</body>
+</html>

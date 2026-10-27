@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/broadsheet-7e1de259-f96e-4f0f-9e83-d9dd92fd4be0/styles.css">
+  <script src="_ds/broadsheet-7e1de259-f96e-4f0f-9e83-d9dd92fd4be0/_ds_bundle.js"></script>
+  <script src="image-slot.js"></script>
+  <style>
+:root{--edge:clamp(20px,5vw,72px);--leading:28px;--half:14px}
+body{margin:0;text-wrap:pretty}
+.wrap{max-width:1100px;margin:0 auto;padding:0 var(--edge)}
+.nav{padding:var(--half) max(var(--edge),calc((100% - 1100px)/2 + var(--edge)));display:flex;align-items:center;justify-content:space-between;gap:var(--half);flex-wrap:wrap}
+.nav-links{display:flex;gap:calc(var(--space-3) * 1.4);align-items:center;flex-wrap:wrap}
+.nav a[aria-current="page"]{color:var(--color-accent-700)}
+.lang-toggle{font-size:13px;letter-spacing:.06em;text-transform:uppercase;border:1px solid color-mix(in srgb,var(--color-text) 30%,transparent);background:transparent;border-radius:var(--radius-sm);padding:5px 10px;cursor:pointer;font-family:var(--font-body);color:var(--color-text)}
+.lang-toggle:hover{border-color:var(--color-accent)}
+.kicker{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 70%,transparent);margin:0 0 var(--half)}
+h1.display{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(32px,4.5vw,52px);line-height:1.1;letter-spacing:-0.02em;margin:0 0 var(--leading)}
+.sub{font-size:16px;line-height:1.6;max-width:60ch;color:color-mix(in srgb,var(--color-text) 78%,transparent);margin:0 0 calc(2*var(--leading))}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:calc(1.6*var(--leading)) clamp(24px,4vw,56px);padding-bottom:calc(2.5*var(--leading))}
+.proj{display:flex;flex-direction:column;gap:14px}
+.proj-shot{aspect-ratio:16/10}
+.proj h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:22px;margin:0;letter-spacing:-0.01em}
+.proj p{font-size:15px;line-height:1.6;margin:0;color:color-mix(in srgb,var(--color-text) 78%,transparent)}
+.proj-tags{display:flex;gap:8px;flex-wrap:wrap}
+.proj-links{display:flex;gap:10px;margin-top:4px}
+.proj-links a{font-size:14px}
+.section-title{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:26px;margin:calc(2*var(--leading)) 0 var(--leading);letter-spacing:-0.01em}
+footer{padding:calc(1.5*var(--leading)) 0;font-size:13px;color:color-mix(in srgb,var(--color-text) 65%,transparent);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a{color:inherit}
+.contact-list{list-style:none;margin:0 0 calc(2*var(--leading));padding:0;border-top:2px solid var(--color-text)}
+.contact-list li{display:grid;grid-template-columns:220px 1fr;gap:var(--leading);padding:calc(var(--half) + 4px) 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 12%,transparent);font-size:16px}
+.contact-list .lbl{font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 65%,transparent)}
+@media(max-width:800px){.contact-list li{grid-template-columns:1fr;gap:4px}}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+  </style>
+</helmet>
+<div>
+<nav class="nav">
+  <span class="nav-brand">Alberto Catalá López</span>
+  <div class="nav-links">
+    <a href="index.dc.html">{{ t.nav_home }}</a>
+    <a href="experiencia.dc.html">{{ t.nav_exp }}</a>
+    <a href="proyectos.dc.html">{{ t.nav_proj }}</a>
+    <a href="contacto.dc.html" aria-current="page">{{ t.nav_contact }}</a>
+    <button type="button" class="lang-toggle" onClick="{{ toggleLang }}">{{ t.lang_label }}</button>
+  </div>
+</nav>
+<div class="wrap">
+  <section style="padding:calc(2*var(--leading)) 0 0">
+    <span class="kicker">{{ t.kicker }}</span>
+    <h1 class="display">{{ t.title }}</h1>
+    <p class="sub">{{ t.intro }}</p>
+  </section>
+  <ul class="contact-list">
+    <li><span class="lbl">{{ t.email }}</span><a href="mailto:albertocatalalopezml@gmail.com">albertocatalalopezml@gmail.com</a></li>
+    <li><span class="lbl">{{ t.phone }}</span><a href="tel:+34722439491">(+34) 722 439 491</a></li>
+    <li><span class="lbl">LinkedIn</span><a href="https://linkedin.com/in/alberto-catala" target="_blank" rel="noopener">linkedin.com/in/alberto-catala</a></li>
+    <li><span class="lbl">GitHub</span><a href="https://github.com/Catala101" target="_blank" rel="noopener">github.com/Catala101</a></li>
+    <li><span class="lbl">{{ t.location }}</span><span>{{ t.location_val }}</span></li>
+    <li><span class="lbl">{{ t.cv }}</span><a href="uploads/cv.pdf" download>{{ t.cv_link }}</a></li>
+  </ul>
+  <div class="proj-links" style="margin-bottom:calc(2*var(--leading))"><a href="mailto:albertocatalalopezml@gmail.com" class="btn btn-primary">{{ t.cta }}</a></div>
+
+  <footer>
+    <span>© 2026 Alberto Catalá López</span>
+    <span><a href="mailto:albertocatalalopezml@gmail.com">albertocatalalopezml@gmail.com</a> · <a href="https://linkedin.com/in/alberto-catala">LinkedIn</a> · <a href="https://github.com/Catala101">GitHub</a></span>
+  </footer>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+const ES = {
+  lang_label: "EN", nav_home: "Inicio", nav_exp: "Experiencia", nav_proj: "Proyectos", nav_contact: "Contacto",
+  kicker: "Contacto", title: "Hablemos",
+  intro: "Busco oportunidades como técnico IT, de sistemas y redes o como programador en Madrid. Escríbeme o llámame y te respondo lo antes posible.",
+  email: "Email", phone: "Teléfono", location: "Ubicación", location_val: "Boadilla del Monte, Madrid", cv: "Currículum", cv_link: "Descargar CV (PDF)", cta: "Enviar un email"
+};
+const EN = {
+  lang_label: "ES", nav_home: "Home", nav_exp: "Experience", nav_proj: "Projects", nav_contact: "Contact",
+  kicker: "Contact", title: "Let's talk",
+  intro: "I'm looking for roles as an IT, systems & networks technician or developer in Madrid. Email or call me and I'll get back to you as soon as possible.",
+  email: "Email", phone: "Phone", location: "Location", location_val: "Boadilla del Monte, Madrid (Spain)", cv: "Résumé", cv_link: "Download CV (PDF)", cta: "Send an email"
+};
+class Component extends DCLogic {
+  state = { lang: (typeof localStorage !== 'undefined' && localStorage.getItem('site-lang')) || 'es' };
+  renderVals() {
+    const t = this.state.lang === 'es' ? ES : EN;
+    return {
+      t,
+      toggleLang: () => this.setState(s => {
+        const lang = s.lang === 'es' ? 'en' : 'es';
+        if (typeof localStorage !== 'undefined') localStorage.setItem('site-lang', lang);
+        return { lang };
+      })
+    };
+  }
+}
+
+</script>
+</body>
+</html>

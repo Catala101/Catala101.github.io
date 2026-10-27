@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/broadsheet-7e1de259-f96e-4f0f-9e83-d9dd92fd4be0/styles.css">
+  <script src="_ds/broadsheet-7e1de259-f96e-4f0f-9e83-d9dd92fd4be0/_ds_bundle.js"></script>
+  <script src="image-slot.js"></script>
+  <style>
+:root{--edge:clamp(20px,5vw,72px);--leading:28px;--half:14px}
+body{margin:0;text-wrap:pretty}
+.wrap{max-width:1100px;margin:0 auto;padding:0 var(--edge)}
+.nav{padding:var(--half) max(var(--edge),calc((100% - 1100px)/2 + var(--edge)));display:flex;align-items:center;justify-content:space-between;gap:var(--half);flex-wrap:wrap}
+.nav-links{display:flex;gap:calc(var(--space-3) * 1.4);align-items:center;flex-wrap:wrap}
+.nav a[aria-current="page"]{color:var(--color-accent-700)}
+.lang-toggle{font-size:13px;letter-spacing:.06em;text-transform:uppercase;border:1px solid color-mix(in srgb,var(--color-text) 30%,transparent);background:transparent;border-radius:var(--radius-sm);padding:5px 10px;cursor:pointer;font-family:var(--font-body);color:var(--color-text)}
+.lang-toggle:hover{border-color:var(--color-accent)}
+.kicker{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 70%,transparent);margin:0 0 var(--half)}
+h1.display{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(32px,4.5vw,52px);line-height:1.1;letter-spacing:-0.02em;margin:0 0 var(--leading)}
+.sub{font-size:16px;line-height:1.6;max-width:60ch;color:color-mix(in srgb,var(--color-text) 78%,transparent);margin:0 0 calc(2*var(--leading))}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:calc(1.6*var(--leading)) clamp(24px,4vw,56px);padding-bottom:calc(2.5*var(--leading))}
+.proj{display:flex;flex-direction:column;gap:14px}
+.proj-shot{aspect-ratio:16/10}
+.proj-shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;border:1px solid color-mix(in srgb,var(--color-text) 14%,transparent);box-sizing:border-box}
+.proj h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:22px;margin:0;letter-spacing:-0.01em}
+.proj p{font-size:15px;line-height:1.6;margin:0;color:color-mix(in srgb,var(--color-text) 78%,transparent)}
+.proj-tags{display:flex;gap:8px;flex-wrap:wrap}
+.proj-links{display:flex;gap:10px;margin-top:4px}
+.proj-links a{font-size:14px}
+.section-title{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:26px;margin:calc(2*var(--leading)) 0 var(--leading);letter-spacing:-0.01em}
+footer{padding:calc(1.5*var(--leading)) 0;font-size:13px;color:color-mix(in srgb,var(--color-text) 65%,transparent);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a{color:inherit}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+  </style>
+</helmet>
+<div>
+<nav class="nav">
+  <span class="nav-brand">Alberto Catalá López</span>
+  <div class="nav-links">
+    <a href="index.dc.html">{{ t.nav_home }}</a>
+    <a href="experiencia.dc.html">{{ t.nav_exp }}</a>
+    <a href="proyectos.dc.html" aria-current="page">{{ t.nav_proj }}</a>
+    <a href="contacto.dc.html">{{ t.nav_contact }}</a>
+    <button type="button" class="lang-toggle" onClick="{{ toggleLang }}">{{ t.lang_label }}</button>
+  </div>
+</nav>
+<div class="wrap">
+  <section style="padding:calc(2*var(--leading)) 0 0">
+    <span class="kicker">{{ t.kicker }}</span>
+    <h1 class="display">{{ t.title }}</h1>
+    <p class="sub">{{ t.intro }}</p>
+  </section>
+
+  <h2 class="section-title">{{ t.cur_title }}</h2>
+  <div class="grid">
+    <div class="proj" style="grid-column:1/-1">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(16px,2vw,24px)"><div class="proj-shot"><img src="img/proyectos/petbrote-portada.webp" alt="{{ t.petbrote.shot }}" loading="lazy"></div><div class="proj-shot"><img src="img/proyectos/petbrote-catalogo.webp" alt="{{ t.petbrote.shot }}" loading="lazy"></div></div>
+      <span class="kicker">{{ t.petbrote.meta }}</span>
+      <h2>{{ t.petbrote.name }}</h2>
+      <p>{{ t.petbrote.body }}</p>
+      <div class="proj-tags"><span class="tag tag-accent">En producción</span><span class="tag tag-outline">E-commerce</span><span class="tag tag-outline">Dropshipping</span><span class="tag tag-outline">Firebase</span><span class="tag tag-outline">Cloud Functions (Node.js)</span><span class="tag tag-outline">Stripe</span><span class="tag tag-outline">GitHub Actions</span><span class="tag tag-outline">Repositorio privado</span></div>
+      <div class="proj-links"><a href="https://petbrote.com" target="_blank" rel="noopener">{{ t.view_site }} →</a></div>
+    </div>
+    <div class="proj">
+      <div class="proj-shot"><img src="img/proyectos/maison-aphra-portada.webp" alt="{{ t.aphra.shot }}" loading="lazy"></div>
+      <span class="kicker">{{ t.aphra.meta }}</span>
+      <h2>{{ t.aphra.name }}</h2>
+      <p>{{ t.aphra.body }}</p>
+      <div class="proj-tags"><span class="tag tag-outline">Firebase</span><span class="tag tag-outline">Cloud Functions (Node.js)</span><span class="tag tag-outline">Stripe Checkout</span><span class="tag tag-outline">Netlify</span><span class="tag tag-outline">React 18</span><span class="tag tag-outline">Repositorio privado</span></div>
+      <div class="proj-links"></div>
+    </div>
+    <div class="proj">
+      <div class="proj-shot"><img src="img/proyectos/portada-el-plan.webp" alt="{{ t.enplan.shot }}" loading="lazy"></div>
+      <span class="kicker">{{ t.enplan.meta }}</span>
+      <h2>{{ t.enplan.name }}</h2>
+      <p>{{ t.enplan.body }}</p>
+      <div class="proj-tags"><span class="tag tag-outline">Kotlin</span><span class="tag tag-outline">Jetpack Compose</span><span class="tag tag-outline">Material 3</span><span class="tag tag-outline">Firebase Auth</span><span class="tag tag-outline">Cloud Firestore</span><span class="tag tag-outline">Repositorio privado</span></div>
+      <div class="proj-links"></div>
+    </div>
+  </div>
+
+  <h2 class="section-title">{{ t.dev_title }}</h2>
+  <div class="grid">
+    <div class="proj">
+      <div class="proj-shot"><img src="img/proyectos/portada-tfg-hotel.webp" alt="{{ t.proj0.shot }}" loading="lazy"></div>
+      <span class="kicker">{{ t.proj0.meta }}</span>
+      <h2>{{ t.proj0.name }}</h2>
+      <p>{{ t.proj0.body }}</p>
+      <div class="proj-tags"><span class="tag tag-outline">Java</span><span class="tag tag-outline">Android</span><span class="tag tag-outline">Volley</span><span class="tag tag-outline">TFG</span></div>
+      <div class="proj-links"><a href="https://github.com/Catala101/TFG-HotelGoldParadise" target="_blank" rel="noopener">{{ t.view_repo }} →</a></div>
+    </div>
+    <div class="proj">
+      <div class="proj-shot"><img src="img/proyectos/portada-springcrud.webp" alt="{{ t.springcrud.shot }}" loading="lazy"></div>
+      <span class="kicker">{{ t.springcrud.meta }}</span>
+      <h2>{{ t.springcrud.name }}</h2>
+      <p>{{ t.springcrud.body }}</p>
+      <div class="proj-tags"><span class="tag tag-outline">Java</span><span class="tag tag-outline">Spring Boot</span><span class="tag tag-outline">Spring Data JPA</span><span class="tag tag-outline">MySQL</span><span class="tag tag-outline">JWT</span><span class="tag tag-outline">Repositorio privado</span></div>
+      <div class="proj-links"></div>
+    </div>
+    <div class="proj">
+      <div class="proj-shot"><img src="img/proyectos/portada-portal-anuncios.webp" alt="{{ t.proj1.shot }}" loading="lazy"></div>
+      <span class="kicker">{{ t.proj1.meta }}</span>
+      <h2>{{ t.proj1.name }}</h2>
+      <p>{{ t.proj1.body }}</p>
+      <div class="proj-tags"><span class="tag tag-outline">Java</span></div>
+      <div class="proj-links"><a href="https://github.com/Catala101/ProyectoPortalAnuncios" target="_blank" rel="noopener">{{ t.view_repo }} →</a></div>
+    </div>
+    <div class="proj">
+      <div class="proj-shot"><img src="img/proyectos/portada-practica7.webp" alt="{{ t.proj2.shot }}" loading="lazy"></div>
+      <span class="kicker">{{ t.proj2.meta }}</span>
+      <h2>{{ t.proj2.name }}</h2>
+      <p>{{ t.proj2.body }}</p>
+      <div class="proj-tags"><span class="tag tag-outline">Java</span><span class="tag tag-outline">Git</span></div>
+      <div class="proj-links"><a href="https://github.com/Catala101/Practica7" target="_blank" rel="noopener">{{ t.view_repo }} →</a></div>
+    </div>
+    <div class="proj" style="grid-column:1/-1">
+      <div class="proj-shot" style="aspect-ratio:21/9"><img src="img/proyectos/github-perfil.webp" alt="{{ t.proj3.shot }}" loading="lazy"></div>
+      <span class="kicker">{{ t.proj3.meta }}</span>
+      <h2>{{ t.proj3.name }}</h2>
+      <p>{{ t.proj3.body }}</p>
+      <div class="proj-tags"><span class="tag tag-outline">GitHub</span></div>
+      <div class="proj-links"><a href="https://github.com/Catala101" target="_blank" rel="noopener">{{ t.view_all }} →</a></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Alberto Catalá López</span>
+    <span><a href="mailto:albertocatalalopezml@gmail.com">albertocatalalopezml@gmail.com</a> · <a href="https://linkedin.com/in/alberto-catala">LinkedIn</a> · <a href="https://github.com/Catala101">GitHub</a></span>
+  </footer>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+const ES = {
+  lang_label: "EN", nav_home: "Inicio", nav_exp: "Experiencia", nav_proj: "Proyectos", nav_contact: "Contacto",
+  kicker: "Portfolio", title: "Proyectos",
+  intro: "Una selección de proyectos personales y académicos de desarrollo de software, incluida mi tienda online en producción. Algunos repositorios son privados; el resto está disponible en mi perfil de GitHub.",
+  dev_title: "Proyectos académicos y formativos",
+  cur_title: "En desarrollo ahora",
+  view_site: "Ver web en producción",
+  petbrote: { name: "Pet Brote — tienda online para mascotas", shot: "Captura de petbrote.com", meta: "Proyecto propio · En producción · 2026", body: "Mi tienda online de productos para mascotas en modelo dropshipping, publicada en petbrote.com: puesta en marcha, selección de producto, automatización de pedidos con el proveedor (Prodac) y captación de clientes. Backend en Firebase (Cloud Functions en Node.js y Firestore con reglas de seguridad), pagos con Stripe (PaymentIntents, webhooks y reembolsos), sincronización del catálogo del proveedor por FTP/CSV, correos transaccionales, seguimiento de pedidos con enlace de GLS y panel de administración. Despliegue automático con GitHub Actions. Diseño, desarrollo y puesta en producción a cargo mío." },
+  aphra: { name: "Maison Aphra — e-commerce de perfumería", shot: "Captura de Maison Aphra", meta: "Proyecto propio · En desarrollo · 2026", body: "Tienda de perfumería y cosmética: catálogo con filtros y buscador, carrito, acceso con Google (Firebase Auth), pagos con Stripe Checkout y webhooks, y panel de administración de productos, fotos (Firebase Storage) y pedidos. Cloud Functions en Node.js, reglas de Firestore/Storage con tests sobre emuladores y web estática preparada para Netlify. Pendiente del primer despliegue." },
+  enplan: { name: "el Plan — app Android", shot: "Capturas de la app el Plan", meta: "Proyecto propio · MVP · 2026", body: "App Android para conocer gente a través de planes reales (correr, senderismo, cafés, deporte). Feed de eventos, creación de planes, participación pública o con aprobación y chat por evento. Kotlin con Jetpack Compose y Material 3, Navigation Compose, arquitectura Repository + ViewModel, Firebase Authentication (email y Google) y Cloud Firestore." },
+  springcrud: { name: "API CRUD de productos con Spring Boot", shot: "Captura de ProductosCRUD", meta: "Proyecto formativo · 2023", body: "Aplicación CRUD de productos en Java con Spring Boot, Spring Data JPA y MySQL, con autenticación mediante JWT y contraseñas cifradas con Argon2." },
+
+  view_repo: "Ver repositorio", view_all: "Ver todos los repositorios",
+  proj0: { name: "TFG — Hotel Gold Paradise", shot: "Captura del proyecto TFG-HotelGoldParadise", meta: "Trabajo de Fin de Grado (DAM) · Finalizado en mayo de 2023", body: "App Android de gestión hotelera desarrollada en Java en unos dos meses como Trabajo de Fin de Grado. Interfaz con AndroidX, Material Components, Navigation y RecyclerView; comunicación con el servidor mediante Volley." },
+  proj1: { name: "Portal de Anuncios", shot: "Captura de ProyectoPortalAnuncios", meta: "Proyecto formativo (DAW) · 2021", body: "Portal de anuncios en Java con alta, edición y borrado de productos, usuarios y categorías; cada usuario gestiona sus propios anuncios, con paginación y buscador." },
+  proj2: { name: "Práctica colaborativa con Git", shot: "Captura de Practica7", meta: "Práctica de clase · 2020", body: "Proyecto colaborativo desarrollado en Java, con control de versiones y trabajo en equipo mediante GitHub." },
+  proj3: { name: "Más proyectos en GitHub", shot: "Vista de perfil de GitHub", meta: "GitHub · Catala101", body: "Repositorios adicionales de prácticas y ejercicios de programación. Perfil completo: github.com/Catala101." },
+};
+const EN = {
+  lang_label: "ES", nav_home: "Home", nav_exp: "Experience", nav_proj: "Projects", nav_contact: "Contact",
+  kicker: "Portfolio", title: "Projects",
+  intro: "A selection of personal and academic software development projects, including my live online store. Some repositories are private; the rest are available on my GitHub profile.",
+  dev_title: "Academic and training projects",
+  cur_title: "Currently building",
+  view_site: "View live site",
+  petbrote: { name: "Pet Brote — online pet store", shot: "Screenshot of petbrote.com", meta: "Own project · Live · 2026", body: "My own dropshipping online store for pet products, live at petbrote.com: launch, product selection, order automation with the supplier (Prodac) and customer acquisition. Firebase backend (Node.js Cloud Functions and Firestore with security rules), Stripe payments (PaymentIntents, webhooks and refunds), supplier catalogue sync via FTP/CSV, transactional emails, order tracking with GLS links and an admin panel. Automatic deployment with GitHub Actions. Designed, built and launched by me." },
+  aphra: { name: "Maison Aphra — fragrance e-commerce", shot: "Screenshot of Maison Aphra", meta: "Own project · In progress · 2026", body: "Fragrance and cosmetics store: catalogue with filters and search, cart, Google sign-in (Firebase Auth), Stripe Checkout payments and webhooks, and an admin panel for products, photos (Firebase Storage) and orders. Node.js Cloud Functions, Firestore/Storage rules tested on emulators, and a static front end ready for Netlify. First deployment pending." },
+  enplan: { name: "el Plan — Android app", shot: "Screenshots of the el Plan app", meta: "Own project · MVP · 2026", body: "Android app to meet people through real-life plans (running, hiking, coffee, sports). Event feed, plan creation, public or approval-based joining and per-event chat. Kotlin with Jetpack Compose and Material 3, Navigation Compose, Repository + ViewModel architecture, Firebase Authentication (email and Google) and Cloud Firestore." },
+  springcrud: { name: "Spring Boot product CRUD API", shot: "Screenshot of ProductosCRUD", meta: "Training project · 2023", body: "Product CRUD application in Java with Spring Boot, Spring Data JPA and MySQL, with JWT authentication and Argon2 password hashing." },
+
+  view_repo: "View repository", view_all: "View all repositories",
+  proj0: { name: "Final Degree Project — Hotel Gold Paradise", shot: "Screenshot of TFG-HotelGoldParadise", meta: "Final Degree Project (DAM) · Completed May 2023", body: "Android hotel management app built in Java over about two months as my Final Degree Project. UI with AndroidX, Material Components, Navigation and RecyclerView; server communication via Volley." },
+  proj1: { name: "Classified Ads Portal", shot: "Screenshot of ProyectoPortalAnuncios", meta: "Training project (DAW) · 2021", body: "Java ads portal with create, update and delete for products, users and categories; each user manages their own listings, with pagination and search." },
+  proj2: { name: "Collaborative Git practice", shot: "Screenshot of Practica7", meta: "Class exercise · 2020", body: "Collaborative project built in Java, with version control and teamwork via GitHub." },
+  proj3: { name: "More on GitHub", shot: "GitHub profile view", meta: "GitHub · Catala101", body: "Additional practice repositories and coding exercises. Full profile: github.com/Catala101." },
+};
+class Component extends DCLogic {
+  state = { lang: (typeof localStorage !== 'undefined' && localStorage.getItem('site-lang')) || 'es' };
+  renderVals() {
+    const t = this.state.lang === 'es' ? ES : EN;
+    return {
+      t,
+      toggleLang: () => this.setState(s => {
+        const lang = s.lang === 'es' ? 'en' : 'es';
+        if (typeof localStorage !== 'undefined') localStorage.setItem('site-lang', lang);
+        return { lang };
+      })
+    };
+  }
+}
+
+</script>
+</body>
+</html>

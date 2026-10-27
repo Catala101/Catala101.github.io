@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/broadsheet-7e1de259-f96e-4f0f-9e83-d9dd92fd4be0/styles.css">
+  <script src="_ds/broadsheet-7e1de259-f96e-4f0f-9e83-d9dd92fd4be0/_ds_bundle.js"></script>
+  <script src="image-slot.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+  <style>
+:root{--leading:28px;--half:14px;--edge:clamp(20px,5vw,72px);--measure:60ch}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;text-wrap:pretty}
+.wrap{max-width:1100px;margin:0 auto;padding:0 var(--edge)}
+.nav{padding:var(--half) max(var(--edge),calc((100% - 1100px)/2 + var(--edge)));display:flex;align-items:center;justify-content:space-between;gap:var(--half);flex-wrap:wrap}
+.nav-links{display:flex;gap:calc(var(--space-3) * 1.4);align-items:center;flex-wrap:wrap}
+.nav a[aria-current="page"]{color:var(--color-accent-700)}
+.lang-toggle{font-size:13px;letter-spacing:.06em;text-transform:uppercase;border:1px solid color-mix(in srgb,var(--color-text) 30%,transparent);background:transparent;border-radius:var(--radius-sm);padding:5px 10px;cursor:pointer;font-family:var(--font-body);color:var(--color-text)}
+.lang-toggle:hover{border-color:var(--color-accent)}
+.kicker{display:block;font-size:13px;line-height:var(--half);letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 70%,transparent);margin:0 0 calc(var(--leading) - var(--half))}
+.hero{padding:calc(3.5*var(--leading)) 0 calc(2.5*var(--leading));display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--leading) clamp(24px,5vw,72px);align-items:center}
+.hero > div:first-child{min-width:0}
+.display{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:clamp(38px,5.2vw,68px);line-height:1.08;letter-spacing:-0.02em;margin:0;margin-left:-0.035em}
+.display .line{display:block}
+.hero .sub{font-size:17px;line-height:var(--leading);max-width:var(--measure);margin:calc(1.4*var(--leading) - 1cap) 0 0}
+.hero .row{display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--leading)}
+.portrait{margin:0;min-width:0}
+.portrait .print{aspect-ratio:1/1;min-width:0;overflow:hidden}
+.portrait .print image-slot{width:100%;height:100%;display:block}
+.portrait .print img{width:100%;height:100%;object-fit:cover;display:block}
+.frontpage{padding:calc(1.5*var(--leading)) 0 calc(2*var(--leading))}
+.rule-head{height:5px;border:0;margin:0;border-top:2px solid var(--color-text);border-bottom:1px solid var(--color-text)}
+.rule-cut{height:0;border:0;border-top:1px solid var(--color-text);margin:0}
+.dateline{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--half) var(--leading);margin:0;padding:var(--half) 0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 70%,transparent)}
+.index{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--half) calc(1.5*var(--leading));padding:calc(var(--leading) - var(--half)) 0 var(--leading)}
+.ix{display:flex;flex-direction:column;gap:4px;margin:0}
+.ix-num{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:34px;color:var(--color-accent-700)}
+.ix-label{font-size:13.5px;color:color-mix(in srgb,var(--color-text) 70%,transparent);line-height:1.4}
+.features{padding:calc(2.5*var(--leading)) 0}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(1.6*var(--leading)) clamp(24px,4vw,56px);margin-top:calc(var(--leading) - var(--half))}
+.col h2{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:21px;line-height:1.3;letter-spacing:-0.01em;margin:0}
+.col p{font-size:15px;line-height:1.6;margin:10px 0 0;color:color-mix(in srgb,var(--color-text) 78%,transparent)}
+.certs{padding:calc(2*var(--leading)) 0}
+.cert-list{list-style:none;margin:calc(var(--leading) - var(--half)) 0 0;padding:0;display:flex;flex-direction:column}
+.cert-row{display:flex;align-items:baseline;gap:8px;padding:11px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 12%,transparent);font-size:15.5px}
+.cert-row:first-child{border-top:1px solid color-mix(in srgb,var(--color-text) 12%,transparent)}
+.cert-leader{flex:1;min-width:20px;align-self:flex-end;margin-bottom:5px;border-bottom:1px dotted color-mix(in srgb,var(--color-text) 40%,transparent)}
+.cert-date{font-feature-settings:"tnum" 1;color:color-mix(in srgb,var(--color-text) 65%,transparent);font-size:13.5px}
+.close{padding:calc(2.5*var(--leading)) 0 calc(3*var(--leading))}
+.close h3{font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:28px;line-height:1.3;margin:0}
+.close .sub{font-size:15.5px;line-height:var(--leading);color:color-mix(in srgb,var(--color-text) 78%,transparent);margin:12px 0 0;max-width:var(--measure)}
+.close .row{display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--leading)}
+footer{padding:calc(1.5*var(--leading)) 0;font-size:13px;color:color-mix(in srgb,var(--color-text) 65%,transparent);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+footer a{color:inherit}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.is-visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}}
+
+.poly-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scan-field{position:fixed;inset:0;overflow:visible;pointer-events:none;z-index:5}
+.scan-line{position:absolute;left:0;right:0;height:160px;background:linear-gradient(to bottom,transparent,color-mix(in srgb,var(--color-accent) 14%,transparent),transparent);animation:scan-sweep 2.2s ease-in-out 1 forwards}
+@keyframes scan-sweep{0%{transform:translateY(-180px)}100%{transform:translateY(100vh)}}
+.poly-canvas{position:fixed !important;top:0;left:0;width:100vw !important;height:100vh !important;z-index:0}
+.bg-host,.nav,.features,.certs,.close,footer{position:relative;z-index:1}
+.hero{position:relative}
+.hero > *{position:relative;z-index:1}
+.hero > .scan-field{position:fixed;z-index:5}
+
+.cursor-blink{display:inline-block;width:.5em;background:var(--color-accent-700);margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.glitch-hover{position:relative;display:inline-block}
+.glitch-hover:hover{animation:glitch-shift .35s steps(2,end) 2}
+@keyframes glitch-shift{
+  0%{text-shadow:none;transform:translate(0)}
+  20%{text-shadow:-2px 0 var(--color-accent),2px 0 var(--color-accent-2);transform:translate(-1px,0)}
+  40%{text-shadow:2px 0 var(--color-accent-2),-2px 0 var(--color-accent);transform:translate(1px,0)}
+  60%{text-shadow:-1px 0 var(--color-accent),1px 0 var(--color-accent-2);transform:translate(-1px,0)}
+  80%{text-shadow:1px 0 var(--color-accent-2),-1px 0 var(--color-accent);transform:translate(0)}
+  100%{text-shadow:none;transform:translate(0)}
+}
+.ix-num{position:relative}
+.type-kicker::after{content:"_";animation:blink 1s steps(1) infinite;color:var(--color-accent-700)}
+@media(prefers-reduced-motion:reduce){.scan-line{animation:none;display:none}.cursor-blink{animation:none}.type-kicker::after{animation:none}}
+.portrait{position:relative}
+.reg-mark{position:absolute;width:22px;height:22px;pointer-events:none}
+.reg-mark::before,.reg-mark::after{content:"";position:absolute;background:var(--color-accent-700)}
+.reg-mark::before{left:50%;top:0;bottom:0;width:1px;transform:translateX(-50%)}
+.reg-mark::after{top:50%;left:0;right:0;height:1px;transform:translateY(-50%)}
+.reg-tl{top:-11px;left:-11px}.reg-tr{top:-11px;right:-11px}.reg-bl{bottom:-11px;left:-11px}.reg-br{bottom:-11px;right:-11px}
+.reg-spin{animation:reg-rotate 12s linear infinite}
+@keyframes reg-rotate{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.reg-spin{animation:none}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.portrait{order:-1;max-width:280px}.index{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}}
+  </style>
+</helmet>
+<div ref="{{ rootRef }}">
+<nav class="nav">
+  <span class="nav-brand">Alberto Catalá López</span>
+  <div class="nav-links">
+    <a href="index.dc.html" aria-current="page">{{ t.nav_home }}</a>
+    <a href="experiencia.dc.html">{{ t.nav_exp }}</a>
+    <a href="proyectos.dc.html">{{ t.nav_proj }}</a>
+    <a href="contacto.dc.html">{{ t.nav_contact }}</a>
+    <button type="button" class="lang-toggle" onClick="{{ toggleLang }}">{{ t.lang_label }}</button>
+  </div>
+</nav>
+<div class="wrap">
+
+  <canvas class="poly-canvas" ref="{{ polyRef }}"></canvas>
+  <div class="bg-host">
+  <section class="hero">
+    <div class="scan-field"><div class="scan-line"></div></div>
+    <div>
+      <span class="kicker type-kicker">{{ t.hero_kicker }}</span>
+      <h1 class="display"><span class="line" ref="{{ line1Ref }}">{{ t.hero_line1 }}</span><span class="line" ref="{{ line2Ref }}">{{ t.hero_line2 }}</span></h1>
+      <p class="sub">{{ t.hero_sub }}<span class="cursor-blink">&nbsp;</span></p>
+      <div class="row">
+        <a href="experiencia.dc.html" class="btn btn-primary">{{ t.hero_cta_primary }}</a>
+        <a href="contacto.dc.html" class="btn btn-ghost">{{ t.hero_cta_secondary }}</a>
+      </div>
+    </div>
+    <figure class="portrait">
+      <span class="reg-mark reg-tl reg-spin"></span>
+      <span class="reg-mark reg-tr reg-spin"></span>
+      <span class="reg-mark reg-bl reg-spin"></span>
+      <span class="reg-mark reg-br reg-spin"></span>
+      <div class="print"><image-slot id="portrait" shape="rect" src="uploads/foto-linkedin.jpg" placeholder="{{ t.portrait_placeholder }}"></image-slot></div>
+    </figure>
+  </section>
+
+  <section class="frontpage reveal" data-reveal="1">
+    <hr class="rule-head">
+    <p class="dateline">
+      <span>{{ t.dateline_1 }}</span>
+      <span>{{ t.dateline_2 }}</span>
+      <span>{{ t.dateline_3 }}</span>
+      <span>{{ t.dateline_4 }}</span>
+    </p>
+    <hr class="rule-cut">
+    <div class="index" ref="{{ statsRef }}">
+      <div class="ix"><span class="ix-num" data-count="8">0</span><span class="ix-label">{{ t.stat_1 }}</span></div>
+      <div class="ix"><span class="ix-num" data-count="5">0</span><span class="ix-label">{{ t.stat_2 }}</span></div>
+      <div class="ix"><span class="ix-num" data-count="6">0</span><span class="ix-label">{{ t.stat_3 }}</span></div>
+      <div class="ix"><span class="ix-num" data-count="10" data-suffix="+">0</span><span class="ix-label">{{ t.stat_4 }}</span></div>
+    </div>
+    <hr class="rule-cut">
+  </section>
+  </div>
+
+  <section class="features reveal" data-reveal="1">
+    <span class="kicker">{{ t.services_kicker }}</span>
+    <sc-for list="{{ t.services }}" as="svc" hint-placeholder-count="6">
+      <div class="col" style="display:none"></div>
+    </sc-for>
+    <div class="cols">
+      <div class="col"><h2 class="glitch-hover">{{ t.services.0.title }}</h2><p>{{ t.services.0.body }}</p></div>
+      <div class="col"><h2 class="glitch-hover">{{ t.services.1.title }}</h2><p>{{ t.services.1.body }}</p></div>
+      <div class="col"><h2 class="glitch-hover">{{ t.services.2.title }}</h2><p>{{ t.services.2.body }}</p></div>
+      <div class="col"><h2 class="glitch-hover">{{ t.services.3.title }}</h2><p>{{ t.services.3.body }}</p></div>
+      <div class="col"><h2 class="glitch-hover">{{ t.services.4.title }}</h2><p>{{ t.services.4.body }}</p></div>
+      <div class="col"><h2 class="glitch-hover">{{ t.services.5.title }}</h2><p>{{ t.services.5.body }}</p></div>
+    </div>
+  </section>
+
+  <section class="certs reveal" data-reveal="1">
+    <span class="kicker">{{ t.certs_kicker }}</span>
+    <h2 style="font-family:var(--font-heading);font-weight:var(--font-heading-weight);font-size:26px;margin:0;letter-spacing:-0.01em">{{ t.certs_title }}</h2>
+    <ul class="cert-list">
+      <li class="cert-row"><span>{{ t.certs.0.name }}</span><span class="cert-leader"></span><span class="cert-date">{{ t.certs.0.date }}</span></li>
+      <li class="cert-row"><span>{{ t.certs.1.name }}</span><span class="cert-leader"></span><span class="cert-date">{{ t.certs.1.date }}</span></li>
+      <li class="cert-row"><span>{{ t.certs.2.name }}</span><span class="cert-leader"></span><span class="cert-date">{{ t.certs.2.date }}</span></li>
+      <li class="cert-row"><span>{{ t.certs.3.name }}</span><span class="cert-leader"></span><span class="cert-date">{{ t.certs.3.date }}</span></li>
+      <li class="cert-row"><span>{{ t.certs.4.name }}</span><span class="cert-leader"></span><span class="cert-date">{{ t.certs.4.date }}</span></li>
+    </ul>
+  </section>
+
+  <section class="features reveal" data-reveal="1">
+    <span class="kicker">{{ t.projects_kicker }}</span>
+    <div class="cols">
+      <div class="col"><h2 class="glitch-hover">{{ t.feat.0.title }}</h2><p>{{ t.feat.0.body }}</p></div>
+      <div class="col"><h2 class="glitch-hover">{{ t.feat.1.title }}</h2><p>{{ t.feat.1.body }}</p></div>
+      <div class="col"><h2 class="glitch-hover">{{ t.feat.2.title }}</h2><p>{{ t.feat.2.body }}</p></div>
+    </div>
+    <div class="row" style="margin-top:var(--leading)"><a href="proyectos.dc.html" class="btn btn-ghost">{{ t.projects_cta }} →</a></div>
+  </section>
+
+  <section class="close reveal" data-reveal="1">
+    <h3>{{ t.close_title }}</h3>
+    <p class="sub">{{ t.close_sub }}</p>
+    <div class="row">
+      <a href="contacto.dc.html" class="btn btn-primary">{{ t.close_cta }}</a>
+      <a href="uploads/cv.pdf" download class="btn btn-ghost">{{ t.close_cv }}</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Alberto Catalá López</span>
+    <span><a href="mailto:albertocatalalopezml@gmail.com">albertocatalalopezml@gmail.com</a> · <a href="https://linkedin.com/in/alberto-catala">LinkedIn</a> · <a href="https://github.com/Catala101">GitHub</a></span>
+  </footer>
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+const ES = {
+  lang_label: "EN", nav_home: "Inicio", nav_exp: "Experiencia", nav_proj: "Proyectos", nav_contact: "Contacto",
+  hero_kicker: "Madrid · IT & Ciberseguridad",
+  hero_line1: "Sistemas que no fallan.",
+  hero_line2: "Seguridad que se nota.",
+  hero_sub: "Técnico IT con experiencia en administración de sistemas, redes, automatización y seguridad tecnológica en entornos críticos, y conocimientos de ciberseguridad. Desde 2017 gestionando infraestructura, redes y seguridad tecnológica en organizaciones donde la continuidad del servicio no es negociable.",
+  hero_cta_primary: "Ver experiencia", hero_cta_secondary: "Contactar",
+  portrait_placeholder: "Foto profesional de Alberto Catalá",
+  dateline_1: "Técnico IT desde 2017", dateline_2: "Madrid, España", dateline_3: "Español · Inglés (B2)", dateline_4: "Disponible para incorporación",
+  stat_1: "Años en sistemas y seguridad", stat_2: "Cursos de formación completados", stat_3: "Áreas de servicio", stat_4: "Lenguajes y tecnologías",
+  services_kicker: "Servicios",
+  services: [
+    {title: "Ciberseguridad física y tecnológica", body: "Integración y operación de CCTV, control de accesos y plataformas PSIM para la gestión de incidentes de seguridad en entornos críticos."},
+    {title: "Administración de sistemas y redes", body: "Configuración, mantenimiento y soporte de servidores, redes y puestos de trabajo en entornos corporativos y de alta disponibilidad."},
+    {title: "Automatización en la nube", body: "Power Automate y Google Apps Script para eliminar tareas manuales: flujos de trabajo, informes y dashboards conectados a Excel y OneDrive."},
+    {title: "Desarrollo de software a medida", body: "Aplicaciones y herramientas internas en C#, JavaScript, Java y Python, del back-end a la interfaz."},
+    {title: "Soporte técnico", body: "Resolución de incidencias, mantenimiento de hardware y software, con foco en minimizar el tiempo de inactividad."},
+    {title: "Administración de bases de datos", body: "Diseño, integración y mantenimiento de bases de datos SQL y MongoDB para operaciones críticas y puntos de venta."}
+  ],
+  certs_kicker: "Formación complementaria", certs_title: "Cursos completados",
+  certs: [
+    {name: "Tools of the Trade: Linux and SQL", date: "Abr 2025"},
+    {name: "Connect and Protect: Networks and Network Security", date: "Mar 2025"},
+    {name: "Play It Safe: Manage Security Risks", date: "Feb 2025"},
+    {name: "Python avanzado — LinkedIn Learning", date: "Oct 2023"},
+    {name: "TypeScript esencial — LinkedIn Learning", date: "Oct 2023"}
+  ],
+  projects_kicker: "Proyectos destacados", projects_cta: "Ver todos los proyectos",
+  feat: [
+    {title: "Pet Brote", body: "Tienda online de mascotas en producción (petbrote.com): Firebase, Cloud Functions en Node.js, pagos con Stripe y despliegue con GitHub Actions."},
+    {title: "Maison Aphra", body: "E-commerce de perfumería con acceso con Google, Stripe Checkout y panel de administración sobre Firebase. En desarrollo."},
+    {title: "el Plan", body: "App Android en Kotlin y Jetpack Compose para quedar en planes reales, con Firebase Auth y Cloud Firestore. MVP."}
+  ],
+  close_title: "¿Hablamos?",
+  close_sub: "Busco oportunidades como técnico IT, de sistemas y redes o como programador. También abierto a colaboraciones puntuales.",
+  close_cta: "Contactar", close_cv: "Descargar CV"
+};
+const EN = {
+  lang_label: "ES", nav_home: "Home", nav_exp: "Experience", nav_proj: "Projects", nav_contact: "Contact",
+  hero_kicker: "Madrid · IT & Cybersecurity",
+  hero_line1: "Systems that don't fail.",
+  hero_line2: "Security you can measure.",
+  hero_sub: "IT technician experienced in systems administration, networking, automation and technology security in critical environments, with working knowledge of cybersecurity. Since 2017 managing infrastructure, networks and technology security where service continuity is not negotiable.",
+  hero_cta_primary: "View experience", hero_cta_secondary: "Get in touch",
+  portrait_placeholder: "Professional photo of Alberto Catalá",
+  dateline_1: "IT technician since 2017", dateline_2: "Madrid, Spain", dateline_3: "Spanish · English (B2)", dateline_4: "Open to new roles",
+  stat_1: "Years in systems & security", stat_2: "Training courses completed", stat_3: "Service areas", stat_4: "Languages & stacks",
+  services_kicker: "Services",
+  services: [
+    {title: "Physical & technology security", body: "Integration and operation of CCTV, access control and PSIM platforms for security incident management in critical environments."},
+    {title: "Systems & network administration", body: "Configuration, maintenance and support of servers, networks and workstations in corporate and high-availability environments."},
+    {title: "Cloud automation", body: "Power Automate and Google Apps Script to remove manual work: workflows, reports and dashboards connected to Excel and OneDrive."},
+    {title: "Custom software development", body: "Applications and internal tools in C#, JavaScript, Java and Python, from back-end to interface."},
+    {title: "Technical support", body: "Incident resolution and hardware/software maintenance, focused on minimizing downtime."},
+    {title: "Database administration", body: "Design, integration and maintenance of SQL and MongoDB databases for critical operations and point of sale."}
+  ],
+  certs_kicker: "Additional training", certs_title: "Completed courses",
+  certs: [
+    {name: "Tools of the Trade: Linux and SQL", date: "Apr 2025"},
+    {name: "Connect and Protect: Networks and Network Security", date: "Mar 2025"},
+    {name: "Play It Safe: Manage Security Risks", date: "Feb 2025"},
+    {name: "Advanced Python — LinkedIn Learning", date: "Oct 2023"},
+    {name: "Essential TypeScript — LinkedIn Learning", date: "Oct 2023"}
+  ],
+  projects_kicker: "Featured projects", projects_cta: "See all projects",
+  feat: [
+    {title: "Pet Brote", body: "Live online pet store (petbrote.com): Firebase, Node.js Cloud Functions, Stripe payments and GitHub Actions deployment."},
+    {title: "Maison Aphra", body: "Fragrance e-commerce with Google sign-in, Stripe Checkout and an admin panel on Firebase. In progress."},
+    {title: "el Plan", body: "Android app in Kotlin and Jetpack Compose to meet up for real-life plans, with Firebase Auth and Cloud Firestore. MVP."}
+  ],
+  close_title: "Let's talk",
+  close_sub: "Looking for roles as an IT, systems & networks technician or developer. Also open to one-off collaborations.",
+  close_cta: "Contact", close_cv: "Download CV"
+};
+class Component extends DCLogic {
+  state = { lang: (typeof localStorage !== 'undefined' && localStorage.getItem('site-lang')) || 'es' };
+  componentDidMount() {
+    if (!this.rootEl) return;
+    const els = this.rootEl.querySelectorAll('[data-reveal]');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    els.forEach(el => obs.observe(el));
+
+    const reduceMotion = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (this.polyCanvas && !reduceMotion) this.initPolyBg(this.polyCanvas);
+    const CHARS = '!<>-_\\/[]{}—=+*^?#0123456789';
+    const scramble = (el) => {
+      if (!el || el.dataset.scrambled) return;
+      el.dataset.scrambled = '1';
+      const final = el.textContent;
+      const len = final.length;
+      const dur = 650;
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min(1, (now - start) / dur);
+        const revealCount = Math.floor(p * len);
+        let out = '';
+        for (let i = 0; i < len; i++) {
+          out += (final[i] === ' ' || i < revealCount) ? final[i] : CHARS[Math.floor(Math.random() * CHARS.length)];
+        }
+        el.textContent = out;
+        if (p < 1) requestAnimationFrame(tick); else el.textContent = final;
+      };
+      requestAnimationFrame(tick);
+      setTimeout(() => { el.textContent = final; }, dur + 100);
+    };
+    if (!reduceMotion) {
+      if (this.line1El) scramble(this.line1El);
+      if (this.line2El) setTimeout(() => scramble(this.line2El), 220);
+    }
+
+    if (this.statsEl) {
+      const nums = this.statsEl.querySelectorAll('[data-count]');
+      const countUp = (el) => {
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || '';
+        if (reduceMotion) { el.textContent = target + suffix; return; }
+        const dur = 900;
+        const start = performance.now();
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(eased * target) + suffix;
+          if (p < 1) requestAnimationFrame(tick); else el.textContent = target + suffix;
+        };
+        requestAnimationFrame(tick);
+      };
+      const statsObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { nums.forEach(countUp); statsObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.3 });
+      statsObs.observe(this.statsEl);
+    }
+  }
+  initPolyBg(canvas) {
+    const ctx = canvas.getContext('2d');
+    const cs = getComputedStyle(document.documentElement);
+    const accent = cs.getPropertyValue('--color-accent').trim() || '#0088b0';
+    const accent2 = cs.getPropertyValue('--color-accent-2').trim() || '#d6006c';
+    let w, h, dpr;
+    const resize = () => {
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      w = window.innerWidth; h = window.innerHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    const N = 90;
+    const pts = Array.from({ length: N }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.22
+    }));
+    const linkDist = 170;
+    let raf;
+    const step = () => {
+      ctx.clearRect(0, 0, w, h);
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+      });
+      for (let i = 0; i < N; i++) {
+        for (let j = i + 1; j < N; j++) {
+          const a = pts[i], b = pts[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < linkDist) {
+            const alpha = (1 - d / linkDist) * 0.32;
+            ctx.strokeStyle = j % 2 === 0
+              ? `color-mix(in srgb, ${accent} ${alpha * 100}%, transparent)`
+              : `color-mix(in srgb, ${accent2} ${alpha * 100}%, transparent)`;
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+      }
+      pts.forEach((p, i) => {
+        ctx.fillStyle = i % 3 === 0
+          ? `color-mix(in srgb, ${accent2} 55%, transparent)`
+          : `color-mix(in srgb, ${accent} 55%, transparent)`;
+        ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI * 2); ctx.fill();
+      });
+      raf = requestAnimationFrame(step);
+    };
+    step();
+    window.addEventListener('resize', resize);
+    this._polyCleanup = () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); };
+  }
+  componentWillUnmount() {
+    if (this._polyCleanup) this._polyCleanup();
+  }
+  renderVals() {
+    const t = this.state.lang === 'es' ? ES : EN;
+    return {
+      t,
+      rootRef: (el) => { this.rootEl = el; },
+      line1Ref: (el) => { this.line1El = el; },
+      line2Ref: (el) => { this.line2El = el; },
+      statsRef: (el) => { this.statsEl = el; },
+      polyRef: (el) => { this.polyCanvas = el; },
+      toggleLang: () => this.setState(s => {
+        const lang = s.lang === 'es' ? 'en' : 'es';
+        if (typeof localStorage !== 'undefined') localStorage.setItem('site-lang', lang);
+        return { lang };
+      })
+    };
+  }
+}
+
+</script>
+</body>
+</html>
